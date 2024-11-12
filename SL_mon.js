@@ -1263,7 +1263,7 @@ function f_julian_to_calendar_str (In_JulianDate, In_TimeZoneOffset, In_UT_TDT_t
         	jtocal_string = jtocal_string + ll_year + " ";
 	}
 	ll_day = parseInt(ll_DD, 10);
-	jtocal_string = jtocal_string + ll_months[ll_month - 1] + ", " + ll_day + " " + ll_days[parseInt(ll_A, 10)] + " ";
+	jtocal_string = jtocal_string + ll_months[ll_month - 1] + ", " + ll_day + " " + ll_days(parseInt(ll_A, 10)) + " ";
 	/* Flag last or first day of year */
 	if (((ll_month = 1) && (ll_day = 1)) || ((ll_month = 12) && (ll_day = 31))) {
     		yerend = 1;
