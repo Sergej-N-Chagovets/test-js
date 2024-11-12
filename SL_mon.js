@@ -109,9 +109,9 @@ function errorHandler(err, in_exit_script, in_location)
 		break;
 	case "ru":
 		if (in_location != "" & in_location != undefined & in_location != null) {
-			WScript.Echo ("Произошла ошибка в : [" + in_location + "].\n" + "Номер:        " + decimalToHexString(err.number) + "\n" + "Описание:    " + err.description);
+			WScript.Echo ("ГЏГ°Г®ГЁГ§Г®ГёГ«Г  Г®ГёГЁГЎГЄГ  Гў : [" + in_location + "].\n" + "ГЌГ®Г¬ГҐГ°:        " + decimalToHexString(err.number) + "\n" + "ГЋГЇГЁГ±Г Г­ГЁГҐ:    " + err.description);
 		} else {
-			WScript.Echo ("Произошла ошибка.\n" + "Номер:        " + decimalToHexString(err.number) + "\n" + "Описание:    " + err.description);
+			WScript.Echo ("ГЏГ°Г®ГЁГ§Г®ГёГ«Г  Г®ГёГЁГЎГЄГ .\n" + "ГЌГ®Г¬ГҐГ°:        " + decimalToHexString(err.number) + "\n" + "ГЋГЇГЁГ±Г Г­ГЁГҐ:    " + err.description);
 		}
 		break;
 	}
@@ -210,7 +210,7 @@ end sub
 function f_GetWin32Processes(In_PCName, In_ShowPID, In_ShowProcessName, In_ShowCommandLine, In_GetProcOwner, In_GetProcOwnerSID, In_ProcElemDelim, In_RowDelim)
 {
 	var objWMI, colItems, objItem, output, output_SID;
-	var list = "Список процессов Windows\n\n";
+	var list = "Г‘ГЇГЁГ±Г®ГЄ ГЇГ°Г®Г¶ГҐГ±Г±Г®Гў Windows\n\n";
 	try
 	{
 		if (In_PCName == null || In_PCName == "")
@@ -232,7 +232,7 @@ function f_GetWin32Processes(In_PCName, In_ShowPID, In_ShowProcessName, In_ShowC
 			l_RowDelim = In_RowDelim
 		}       	
 		objWMI = GetObject("winmgmts:\\\\" + l_PCName + "\\root\\cimv2");
-		//Формируем коллекцию процессов с помощью класса Win32_Process
+		//Г”Г®Г°Г¬ГЁГ°ГіГҐГ¬ ГЄГ®Г«Г«ГҐГЄГ¶ГЁГѕ ГЇГ°Г®Г¶ГҐГ±Г±Г®Гў Г± ГЇГ®Г¬Г®Г№ГјГѕ ГЄГ«Г Г±Г±Г  Win32_Process
 		colItems = new Enumerator(objWMI.ExecQuery("Select * from Win32_Process"));
 		for (; !colItems.atEnd(); colItems.moveNext())
 		{
@@ -806,22 +806,22 @@ function Registry() {
   _registryProvider = _createRegistryProvider();
 }
 /*
-// Конструктор объекта для работы с реестром.
-// Константы.
-// Корень локальной машины.
+// ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г° Г®ГЎГєГҐГЄГІГ  Г¤Г«Гї Г°Г ГЎГ®ГІГ» Г± Г°ГҐГҐГ±ГІГ°Г®Г¬.
+// ГЉГ®Г­Г±ГІГ Г­ГІГ».
+// ГЉГ®Г°ГҐГ­Гј Г«Г®ГЄГ Г«ГјГ­Г®Г© Г¬Г ГёГЁГ­Г».
 Registry.prototype.HKLM = 0x80000002;
-// Типы значений.
+// Г’ГЁГЇГ» Г§Г­Г Г·ГҐГ­ГЁГ©.
 Registry.prototype.REG_SZ = 1;
 Registry.prototype.REG_EXPAND_SZ = 2;
 Registry.prototype.REG_BINARY = 3;
 Registry.prototype.REG_DWORD = 4;
 Registry.prototype.REG_MULTI_SZ = 7;
 function Registry() {
-  // Атрибуты объекта.
-  // COM-объект - WMI провайдер реестра.
+  // ГЂГІГ°ГЁГЎГіГІГ» Г®ГЎГєГҐГЄГІГ .
+  // COM-Г®ГЎГєГҐГЄГІ - WMI ГЇГ°Г®ГўГ Г©Г¤ГҐГ° Г°ГҐГҐГ±ГІГ°Г .
   var _registryProvider = null;
-  // Методы объекта.
-  // Возвращает непосредственные ключи указанной ветви дерева.
+  // ГЊГҐГІГ®Г¤Г» Г®ГЎГєГҐГЄГІГ .
+  // Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Г­ГҐГЇГ®Г±Г°ГҐГ¤Г±ГІГўГҐГ­Г­Г»ГҐ ГЄГ«ГѕГ·ГЁ ГіГЄГ Г§Г Г­Г­Г®Г© ГўГҐГІГўГЁ Г¤ГҐГ°ГҐГўГ .
   this.getSubKeys = function(rootKey, keyPath) {
     var keys = new Array();
     var enumKeys = new WMIMethod(_registryProvider, "EnumKey");
@@ -834,7 +834,7 @@ function Registry() {
     }
     return keys;
   }
-  // Возвращает значения ключа указанной ветви дерева.
+  // Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Г§Г­Г Г·ГҐГ­ГЁГї ГЄГ«ГѕГ·Г  ГіГЄГ Г§Г Г­Г­Г®Г© ГўГҐГІГўГЁ Г¤ГҐГ°ГҐГўГ .
   this.getValues = function(rootKey, keyPath, valueName) {
     var result = new Array();
     var valuesNames, valuesTypes;
@@ -852,7 +852,7 @@ function Registry() {
     }
     return result;
   }
-  // Возвращает значение из ключа.
+  // Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Г§Г­Г Г·ГҐГ­ГЁГҐ ГЁГ§ ГЄГ«ГѕГ·Г .
   this.read = function(rootKey, keyPath, valueName) {
     var values = this.getValues(rootKey, keyPath);
     var valueType = null;
@@ -897,13 +897,13 @@ function Registry() {
       }
     }
   }
-  // Вспомогательные функции.
+  // Г‚Г±ГЇГ®Г¬Г®ГЈГ ГІГҐГ«ГјГ­Г»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ.
   function _createRegistryProvider() {
     var locator = new ActiveXObject("WbemScripting.SWbemLocator");
     var connection = locator.ConnectServer(null, "root\\default");
     return connection.Get("StdRegProv");
   }
-  // Инициализация
+  // Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї
   _registryProvider = _createRegistryProvider();
 }
 */
@@ -1263,7 +1263,7 @@ function f_julian_to_calendar_str (In_JulianDate, In_TimeZoneOffset, In_UT_TDT_t
         	jtocal_string = jtocal_string + ll_year + " ";
 	}
 	ll_day = parseInt(ll_DD, 10);
-	jtocal_string = jtocal_string + ll_months(ll_month - 1) + ", " + ll_day + " " + ll_days(parseInt(ll_A, 10)) + " ";
+	jtocal_string = jtocal_string + ll_months[ll_month - 1] + ", " + ll_day + " " + ll_days[parseInt(ll_A, 10)] + " ";
 	/* Flag last or first day of year */
 	if (((ll_month = 1) && (ll_day = 1)) || ((ll_month = 12) && (ll_day = 31))) {
     		yerend = 1;
@@ -2598,7 +2598,7 @@ function main ()
 //					WScript.Echo("Entered into network section!");
 					//Network present now lets check SysLib completition.
 					//Location dependent on username...
-					if (ll_UserName == "system" || ll_UserName == "система" || l_UserSID == "S-1-5-18" || l_UserSID == "S-1-5-19" || l_UserSID == "S-1-5-20") {
+					if (ll_UserName == "system" || ll_UserName == "Г±ГЁГ±ГІГҐГ¬Г " || l_UserSID == "S-1-5-18" || l_UserSID == "S-1-5-19" || l_UserSID == "S-1-5-20") {
 						l_IsSystem = true;
 					} else {
 						l_IsSystem = false;
